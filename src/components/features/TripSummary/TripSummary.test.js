@@ -52,5 +52,12 @@ describe('Component TripSummary', () => {
     expect(component.find('.tag').at(2).text()).toEqual('third');
   });
 
+  it('should not render tags if theres no array', () => {
+    const component = shallow(<TripSummary id='abc' image='image.jpg' name='trip' cost='123' days={3} tags={['']} />);
+
+    expect(component.find('.tags')).toMatchObject({});
+    console.log(component.debug());
+  });
+
 
 });

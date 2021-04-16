@@ -33,8 +33,13 @@ describe('Component TripSummary', () => {
     expect(component.find('.title').text()).toEqual(name);
     expect(component.find('span').at(0).text()).toEqual(days + ' days');
     expect(component.find('span').at(1).text()).toEqual('from ' + cost);
-
     console.log(component.debug());
-
   });
+
+  it('should render without crashing', () => {
+    const component = shallow(<TripSummary id='abc' image='image.jpg' name='trip' cost='123' days={3} tags={['first', 'second', 'third', 'fourth']} />);
+    expect(component).toBeTruthy();
+  });
+
+
 });

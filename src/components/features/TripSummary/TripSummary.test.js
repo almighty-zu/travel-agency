@@ -41,5 +41,9 @@ describe('Component TripSummary', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should throw error without required props', () => {
+    expect(() => shallow(<TripSummary />)).toThrow();
+  });
+
 
 });

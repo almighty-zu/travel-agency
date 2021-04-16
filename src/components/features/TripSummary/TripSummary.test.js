@@ -37,12 +37,19 @@ describe('Component TripSummary', () => {
   });
 
   it('should render without crashing', () => {
-    const component = shallow(<TripSummary id='abc' image='image.jpg' name='trip' cost='123' days={3} tags={['first', 'second', 'third', 'fourth']} />);
+    const component = shallow(<TripSummary id='abc' image='image.jpg' name='trip' cost='123' days={3} tags={['first', 'second', 'third']} />);
     expect(component).toBeTruthy();
   });
 
   it('should throw error without required props', () => {
     expect(() => shallow(<TripSummary />)).toThrow();
+  });
+
+  it('renders tags correctly', () => {
+    const component = shallow(<TripSummary id='abc' image='image.jpg' name='trip' cost='123' days={3} tags={['first', 'second', 'third']} />);
+    expect(component.find('.tag').at(0).text()).toEqual('first');
+    expect(component.find('.tag').at(1).text()).toEqual('second');
+    expect(component.find('.tag').at(2).text()).toEqual('third');
   });
 
 

@@ -21,5 +21,33 @@ describe('Component OrderOption', () => {
     expect(component.find('h3').text()).toEqual(name); /*Consider why title selector didnt worked*/
   });
 
+  const optionTypes = {
+    dropdown: 'OrderOptionDropdown',
+    icons: 'OrderOptionIcons',
+    checkboxes: 'OrderOptionCheckboxes',
+    number: 'OrderOptionNumber',
+    text: 'OrderOptionText',
+    date: 'OrderOptionDate',
+  };
+
+  for(let type in optionTypes){
+    describe(`Component OrderOption with type=${type}`, () => {
+      /* test setup */
+
+      /* common tests */
+      it('passes dummy test', () => {
+        expect(1).toBe(1);
+      });
+
+      /* type-specific tests */
+      switch (type) {
+        case 'dropdown': {
+          /* tests for dropdown */
+          break;
+        }
+      }
+    });
+  }
+
 
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import OrderOption from './OrderOption.js';
+import DatePicker from 'react-datepicker';
 
 describe('Component OrderOption', () => {
   it('Should render without crashing', () => {
@@ -56,7 +57,7 @@ describe('Component OrderOption', () => {
   };
 
   const testValue = mockProps.values[1].id;
-  //const testValueNumber = 3;
+  const testValueNumber = 3;
 
   for(let type in optionTypes){
     describe(`Component OrderOption with type=${type}`, () => {
@@ -128,6 +129,12 @@ describe('Component OrderOption', () => {
             expect(input.prop('type')).toEqual('text');
           });
 
+          it('should run setOrderOption function on change', () => {
+            renderedSubcomponent.find('input').simulate('change', {currentTarget: {value: testValue}});
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+            expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValue });
+          });
+
           break;
         }
         case 'number': {
@@ -137,6 +144,11 @@ describe('Component OrderOption', () => {
             expect(input.prop('value')).toEqual(mockPropsForType.number.currentValue);
             expect(input.prop('min')).toEqual(mockProps.limits.min);
             expect(input.prop('max')).toEqual(mockProps.limits.max);
+          });
+          it('should run setOrderOption function on change', () => {
+            renderedSubcomponent.find('input').simulate('change', {currentTarget: {value: testValueNumber}});
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+            expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValueNumber});
           });
           break;
         }
@@ -154,7 +166,10 @@ describe('Component OrderOption', () => {
             expect(firstIconDiv.text()).toEqual(expect.stringContaining(mockProps.values[0].name));
             expect(secondIconDiv.text()).toEqual(expect.stringContaining(mockProps.values[1].name));
           });
-
+          it('should run setOrderOption function on change', () => {
+            renderedSubcomponent.find('.icon').last().simulate('click');
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+          });
 
           break;
         }
@@ -162,6 +177,11 @@ describe('Component OrderOption', () => {
           it('contains div with datepicker', () => {
             const datePickerParent = renderedSubcomponent.find('div');
             expect(datePickerParent.childAt(0).prop('selected')).toEqual(mockPropsForType.date.currentValue);
+          });
+          it('should run setOrderOption function on change', () => {
+            renderedSubcomponent.find(DatePicker).simulate('change',  testValue);
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+            expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValue});
           });
 
           break;
@@ -178,7 +198,12 @@ describe('Component OrderOption', () => {
 
             expect(inputs.at(0).prop('value')).toEqual(mockProps.values[0].id);
             expect(inputs.at(1).prop('value')).toEqual(mockProps.values[1].id);
+          });
 
+          it('should run setOrderOption function on change', () => {
+            renderedSubcomponent.find({value: testValue}).simulate('change', {currentTarget: {checked: true}});
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+            expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [mockProps.currentValue, testValue] });
           });
           break;
         }

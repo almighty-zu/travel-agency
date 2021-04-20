@@ -1,0 +1,19 @@
+{
+  "orders": [
+    {
+      "car-rental": "suv",
+      "accommodation": "hotel",
+      "features": [
+        "pool",
+        "kitchen"
+      ],
+      "adults": 1,
+      "children": 0,
+      "name": "",
+      "contact": "",
+      "start-date": "",
+      "totalCost": "$31,019",
+      "id": 1
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import HappyHourAd from 'HappyHourAd.js';
+import HappyHourAd from './HappyHourAd.js';
 
 describe('component HappyHourAd', () => {
   it('should render without crashing', () => {

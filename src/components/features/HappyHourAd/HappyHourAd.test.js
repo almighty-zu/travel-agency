@@ -53,7 +53,7 @@ const checkDescriptionAtTime = (time, expectedDescription) => {
     global.Date = mockDate(`2019-05-14T${time}.135Z`);
 
     const component = shallow(<HappyHourAd {...mockProps} />);
-    const renderedTime = component.find(select.descr).text();
+    const renderedTime = component.find(select.promoDescription).text();
     expect(renderedTime).toEqual(expectedDescription);
 
     global.Date = trueDate;

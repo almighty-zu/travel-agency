@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './HappyHourAdd.scss';
+import styles from './HappyHourAd';
 import PropTypes from 'prop-types';
 
 class HappyHourAd extends React.Component {
